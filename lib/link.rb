@@ -1,13 +1,14 @@
 require 'pg'
 require './env'
+require './lib/database_connection.rb'
 
 class Link
 
   def self.connection
     if ENV['ENVIRONMENT'] == 'test'
-      @con = PG.connect :dbname => DB_TEST
+      @con = DatabaseConnection.setup(DB_TEST)
     else
-      @con = PG.connect :dbname => DB_NAME
+      @con = DatabaseConnection.setup(DB_NAME)
     end
   end
 
