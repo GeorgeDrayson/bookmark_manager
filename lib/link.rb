@@ -1,9 +1,14 @@
 require 'pg'
+require './env'
 
 class Link
 
-  def self.connection(db_name)
-    @con = PG.connect :dbname => db_name
+  def self.connection
+    if ENV['ENVIRONMENT'] == 'test'
+      @con = PG.connect :dbname => DB_TEST
+    else
+      @con = PG.connect :dbname => DB_NAME
+    end
   end
 
   def self.all

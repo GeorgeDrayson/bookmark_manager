@@ -1,11 +1,10 @@
 require 'sinatra/base'
 require_relative './lib/link.rb'
-require './env'
 
 class BookmarkManager < Sinatra::Base
 
   get '/' do
-    Link.connection(DB_NAME)
+    Link.connection
     @links = Link.all
     erb(:index)
   end
