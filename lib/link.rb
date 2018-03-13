@@ -1,7 +1,13 @@
+require 'pg'
+
 class Link
 
+  def self.connection(db_name)
+    @con = PG.connect :dbname => db_name
+  end
+
   def self.all
-    ['https://github.com/', 'https://www.google.co.uk/', 'http://store.steampowered.com/']
+    links_data = @con.exec "SELECT url FROM links;"
   end
 
 end
