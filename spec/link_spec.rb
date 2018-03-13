@@ -8,4 +8,11 @@ describe Link do
     end
   end
 
+  describe '#all' do
+    it 'should add a link' do
+      Link.add("http://www.makersacademy.com/")
+      expect(Link.all).to include("http://www.makersacademy.com/")
+    end
+  end
+
 end

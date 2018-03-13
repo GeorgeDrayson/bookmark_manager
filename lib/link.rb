@@ -16,6 +16,10 @@ class Link
     links_data.map{ |link| link['url'] }
   end
 
+  def self.add(url)
+    @con.exec("INSERT INTO links (url) VALUES('#{url}');")
+  end
+
 end
 
 #test

@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
+
     <meta charset="utf-8">
     <title>Bookmark Manager</title>
+
   </head>
+
   <body>
+
+      <form action="/add" method="post">
+        <input type="text" name="link_box">
+        <input type="submit" value="Add">
+      </form>
+
     <h1> Links </h1>
     <% @links.each do |link| %>
     <ul>
       <li><%= link %></li>
     </ul>
     <% end %>
+
   </body>
+
 </html>
