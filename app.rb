@@ -4,7 +4,7 @@ require_relative './lib/link.rb'
 class Bookmark_manager < Sinatra::Base
 
   get '/' do
-    Link.connection('bookmark_manager')
+    Link.connection('bookmarks')
     @links = Link.all
     erb(:index)
   end

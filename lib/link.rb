@@ -8,6 +8,7 @@ class Link
 
   def self.all
     links_data = @con.exec "SELECT url FROM links;"
+    links_data.map{ |link| link['url'] }
   end
 
 end

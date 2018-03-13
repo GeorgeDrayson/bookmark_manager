@@ -6,7 +6,6 @@ feature 'See list of links' do
 
     expect(page).to have_content('https://github.com/')
     expect(page).to have_content('https://www.google.co.uk/')
-    expect(page).to have_content('http://store.steampowered.com/')
   end
 
 end
