@@ -1,19 +1,19 @@
 require 'database_connection'
 
 describe DatabaseConnection do
-  describe '#setup' do
-    it 'should save database connection to @connection' do
-      connection = DatabaseConnection.setup(DB_TEST)
-      expect(DatabaseConnection.database).to be(connection)
-    end
-
+  describe '.setup' do
     it 'should set up a connection through PG' do
       expect(PG).to receive(:connect).with(dbname: DB_TEST)
       DatabaseConnection.setup(DB_TEST)
     end
+
+    it 'should save database connection to @connection' do
+      connection = DatabaseConnection.setup(DB_TEST)
+      expect(DatabaseConnection.database).to eq(connection)
+    end
   end
 
-  describe '#query' do
+  describe '.query' do
     it 'should execute show all  query given' do
       connection = DatabaseConnection.setup(DB_TEST)
       expect(connection).to receive(:exec).with('SELECT * FROM links;')

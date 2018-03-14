@@ -1,5 +1,21 @@
 # bookmark_manager
 
+## Getting Started ##
+
+Ruby version:
+```
+2.5.0
+```
+Run:
+```
+bundle install
+```
+To setup the databases required, run:
+```
+rake setup
+```
+
+## User stories ##
 
 ```
 As a user,
@@ -43,6 +59,7 @@ As a user,
 So that no one else can edit my links,
 I would like to sign in
 ```
+## Domain model ##
 ```
            (.all)
             --->   

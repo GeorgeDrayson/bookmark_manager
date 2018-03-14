@@ -7,20 +7,62 @@
 
   </head>
 
-  <body>
+  <style>
+#add{
+   position: absolute;
+   top: 50px;
+   left: 700px;
+   width: 400px;
+   height: 300px;
+   border: solid 0px;
+}
 
-      <form action="/add" method="post">
+.alert {
+     padding: 10px;
+     display: inline-block;
+     /* width: 200px; */
+     background-color: white;
+     color: #EE5050;
+     margin-bottom: 5px;
+     padding-left: 30px;
+     padding-right: 30px;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+body {
+  background-color: #EE5050;
+  font-family: 'Raleway', sans-serif;
+  color: white;
+}
+
+  </style>
+
+  <body>
+  <div id="add">
+      <form action="/add" method="post" class="add">
         <input type="text" name="link_box">
         <input type="submit" value="Add">
       </form>
 
+    <% if flash[:warning] == "This is not a link" %>
+    <div data-alert class="alert">
+      <strong> <%= flash[:warning] %> </strong>
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+    <% end%>
+  </div>
+
     <h1> Links </h1>
     <% @links.each do |link| %>
     <ul>
-      <li><%= link %></li>
+      <li><%= link.url %></li>
     </ul>
     <% end %>
 
   </body>
+
 
 </html>
