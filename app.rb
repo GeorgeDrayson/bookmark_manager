@@ -14,7 +14,17 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/add' do
-    flash[:warning] = "This is not a link" unless Link.add(params[:link_box])
+    flash[:warning] = "This is not a link" unless Link.add(params[:link_box], params[:title_box])
+    redirect to('/')
+  end
+
+  post '/delete' do
+    Link.delete(params[:id_to_delete].to_i)
+    redirect to('/')
+  end
+
+  post '/update' do
+    Link.update(params[:id_to_update].to_i)
     redirect to('/')
   end
 

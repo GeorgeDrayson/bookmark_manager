@@ -10,22 +10,26 @@
   <style>
 #add{
    position: absolute;
-   top: 50px;
+   /* top: 50px; */
    left: 700px;
-   width: 400px;
-   height: 300px;
-   border: solid 0px;
+   text-align: center;
+}
+
+.input {
+  margin-bottom: 15px;
+  width: 200px;
+  height: 20px;
 }
 
 .alert {
      padding: 10px;
      display: inline-block;
-     /* width: 200px; */
      background-color: white;
      color: #EE5050;
      margin-bottom: 5px;
      padding-left: 30px;
      padding-right: 30px;
+     float: right;
 }
 
 .closebtn:hover {
@@ -38,14 +42,29 @@ body {
   color: white;
 }
 
+.list a:link, .about_list a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+
+.list a:hover, .about_list a:active {
+    text-decoration: underline;
+    color: white;
+    font-weight: bold;
+}
+
   </style>
 
   <body>
   <div id="add">
+      <h3> Add links </h3>
       <form action="/add" method="post" class="add">
-        <input type="text" name="link_box">
-        <input type="submit" value="Add">
+        <input type="text" placeholder="URL" class="input" name="link_box" required><br>
+        <input type="text" placeholder="Title" class="input" name="title_box" required><br>
+        <input type="submit" class="input" value="Add">
       </form>
+  </div>
 
     <% if flash[:warning] == "This is not a link" %>
     <div data-alert class="alert">
@@ -53,13 +72,23 @@ body {
       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
     </div>
     <% end%>
-  </div>
 
     <h1> Links </h1>
     <% @links.each do |link| %>
-    <ul>
-      <li><%= link.url %></li>
+    <ul class = "list">
+      <li><a href="<%= link.url %>" style="color: white;" target="_blank"><%= link.title %></a></li>
     </ul>
+    <div id="<%= link.title %>">
+    <form action="/delete" method="post">
+      <input type="hidden" name="id_to_delete" class="input" value="<%=link.id%>">
+      <input type="submit" value="Delete">
+    </form>
+
+    <form action="/update" method="post">
+      <input type="hidden" name="id_to_update" class="input" value="<%=link.id%>">
+      <input type="submit" value="Edit">
+    </form>
+    </div>
     <% end %>
 
   </body>
